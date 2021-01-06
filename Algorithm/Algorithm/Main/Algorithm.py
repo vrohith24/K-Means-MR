@@ -6,6 +6,9 @@ from pyspark.sql import SparkSession
 # to manipulate panadas data set
 import numpy as np
 import pandas as pd
+import multiprocessing as mp
+from multiprocessing.pool import ThreadPool
+pool = ThreadPool(processes=mp.cpu_count())
 #Pyspark modules
 from pyspark.sql import Row
 import pyspark
