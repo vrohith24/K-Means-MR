@@ -6,6 +6,9 @@ from pyspark.sql import SparkSession
 # to manipulate panadas data set
 import numpy as np
 import pandas as pd
+import multiprocessing as mp
+from multiprocessing.pool import ThreadPool
+pool = ThreadPool(processes=mp.cpu_count())
 #Pyspark modules
 from pyspark.sql import Row
 import pyspark
@@ -23,7 +26,11 @@ from mpl_toolkits import mplot3d
 from pyspark.sql.types import DecimalType
 from pyspark.sql.types import IntegerType
 from pyspark.sql.functions import explode, col, udf, mean as _mean, stddev as _stddev
+#generate Schema to build a table
+#IF exists get spark session or create 
 
+spark = SparkSession.builder.appName('pyspark - K-Means').getOrCreate()
+sc = spark.sparkContext
 
 #Data Normalization
 df1=datanormalization
